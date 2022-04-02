@@ -49,5 +49,8 @@ class DishSize(models.Model):
     weight = models.FloatField(null=True, blank=True)
     price = models.PositiveIntegerField(default=1)
 
+    def __str__(self):
+        return f'{self.dish},{self.size_type}'
+
 
 
