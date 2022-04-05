@@ -1,4 +1,3 @@
-
 from django.db import models
 from enum import Enum
 from dishes.models import Dish
@@ -6,6 +5,9 @@ from dishes.models import Dish
 
 class Cart(models.Model):
     date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f' order # {self.pk}'
 
 
 class CartItem(models.Model):
@@ -17,4 +19,3 @@ class CartItem(models.Model):
     amount = models.PositiveIntegerField()
     dough_type = models.CharField(max_length=100, choices=DOUGH_TYPE_CHOICES, null=True)
     dish_size = models.ForeignKey("dishes.DishSize", on_delete=models.SET_NULL, null=True)
-

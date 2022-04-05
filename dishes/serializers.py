@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Dish, DishSize, DishTopping, SizeType, Topping, Category
+from .models import Dish, DishSize, SizeType, Topping, Category
 
 
 class DishSerializer(serializers.ModelSerializer):
@@ -14,21 +14,15 @@ class DishSizeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DishToppingSerializer(serializers.ModelSerializer):
+class ToppingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = DishTopping
+        model = Topping
         fields = '__all__'
 
 
 class SizeTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = SizeType
-        fields = '__all__'
-
-
-class ToppingSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Topping
         fields = '__all__'
 
 

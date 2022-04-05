@@ -15,24 +15,24 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
 
+class Topping(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f'{self.title}'
+
+
 class Dish(models.Model):
     title = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    topping = models.ManyToManyField(Topping)
 
     def __str__(self):
         return "{} ({})".format(self.title, self.category)
 
     class Meta:
         verbose_name_plural = 'dishes'
-
-
-class Topping(models.Model):
-    title = models.CharField(max_length=100)
-
-
-class DishTopping(models.Model):
-    dish = models.ForeignKey(Dish, on_delete=models.CASCADE)
-    topping = models.ForeignKey(Topping, on_delete=models.CASCADE)
+        ordering = ['category']
 
 
 class SizeType(models.Model):
@@ -50,7 +50,4 @@ class DishSize(models.Model):
     price = models.PositiveIntegerField(default=1)
 
     def __str__(self):
-        return f'{self.dish},{self.size_type}'
-
-
-
+        return f'{self.size_type} {self.dish}'
