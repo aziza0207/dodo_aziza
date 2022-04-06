@@ -13,6 +13,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = 'categories'
+        ordering = ['id']
 
 
 class Topping(models.Model):
@@ -28,11 +29,10 @@ class Dish(models.Model):
     topping = models.ManyToManyField(Topping)
 
     def __str__(self):
-        return "{} ({})".format(self.title, self.category)
+        return self.title
 
     class Meta:
         verbose_name_plural = 'dishes'
-        ordering = ['category']
 
 
 class SizeType(models.Model):
@@ -40,6 +40,9 @@ class SizeType(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['id']
 
 
 class DishSize(models.Model):
